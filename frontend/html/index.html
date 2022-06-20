@@ -15,6 +15,7 @@
             </div>
             <div id="expense-form">
                 <h5>Enter your expense here</h5>
+                <button id="form-exit-button">X</button>
                 <form>
                     <div class="expense-input">
                         <label for="expense-name">Expense Name</label>
@@ -35,10 +36,13 @@
 
             </div>
             <div id="expense-display">
-                <h5>Expenses</h5>
-                <ul id="display-list">
-                    
-                </ul>
+                <table id="expense-table">
+                    <tr>
+                        <th>Expense Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                    </tr>
+                </table>
             </div>
             <div id="submit-div">
                 <button class="main-button">Submit</button>
