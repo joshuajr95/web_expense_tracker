@@ -12,6 +12,7 @@
         <main>
             <div id="button-div">
                 <button id="add-button" class="main-button">Add expense</button>
+                <button id="submit-button" class="main-button">Submit</button>
             </div>
             <div id="expense-form">
                 <h5>Enter your expense here</h5>
@@ -37,16 +38,23 @@
             </div>
             <div id="expense-display">
                 <table id="expense-table">
-                    <tr>
-                        <th>Expense Name</th>
-                        <th>Date</th>
-                        <th>Amount</th>
-                    </tr>
+                    <thead>
+                        
+                        <tr>
+                            <th colspan="5">Expenses</th>
+                            <!--<th>Date</th>
+                            <th>Amount</th>-->
+                        </tr>
+                    </thead>
+                    <tbody id="expense-table-body">
+
+                    </tbody>
+                    
                 </table>
             </div>
-            <div id="submit-div">
-                <button class="main-button">Submit</button>
-            </div>
+            <!--<div id="submit-div">
+                
+            </div> -->
         </main>
         <!--<footer>This is a footer</footer> -->
         <script src="../scripts/index_scripts.js"></script>
