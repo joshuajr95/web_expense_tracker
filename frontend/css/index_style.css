@@ -62,7 +62,7 @@ main
     background-color: rgb(25, 109, 25);
 }
 
-#expense-form
+#expense-form-div
 {
     position: fixed;
     top: 15%;
@@ -73,15 +73,16 @@ main
     background-color: rgb(197, 217, 222);
     border: 4px solid gray;
     border-radius: 3px;
+    z-index: 10;
     display: none;
 }
 
-#expense-form *
+#expense-form-div *
 {
     box-sizing: border-box;
 }
 
-#expense-form form
+#expense-form-div form
 {
     line-height: 1.5;
     width: 100%;
@@ -96,7 +97,7 @@ main
     display: block;
 }
 
-#expense-form h5
+#expense-form-div h5
 {
     display: inline-block;
     position: relative;
@@ -125,20 +126,24 @@ main
     height: 40px;
 }
 
-
-#expense-form #form-button-div
+#expense-form
 {
-    position: relative;
-    top: 30px;
+    display: block;
+    height: 300px;
 }
 
+
+#form-container
+{
+    height: 70%;
+}
 
 #expense-submit
 {
     font-size: 15px;
     display: block;
     position: relative;
-    top: 20px;
+    top: 10px;
     width: 100%;
     height: 40px;
     background-color: rgb(42, 164, 42);
@@ -226,11 +231,11 @@ td
 {
     position: relative;
     height: 30px;
-    width: 60px;
+    width: 50px;
     margin: 5px;
     padding: 5px;
     border: none;
-    border-radius: 2px;
+    border-radius: 3px;
     background-color: rgb(42, 164, 42);
     color: black;
 }
