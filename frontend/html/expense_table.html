@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Expense Tracker</title>
+        <link rel="stylesheet" href="../css/expense_style.css">
+    </head>
+    <body>
+        <header>
+            <h2 id="page-title">Expensiv</h2>
+            <nav>
+                <ul id="nav-list">
+                    <li class="navigate"><a href="#">About</a></li>
+                    <li class="navigate"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="log-button">Login</button>
+        </header>
+        <div  id="expense-form-div">
+            <h5 >Enter your expense here</h5>
+            <button id="form-exit-button">X</button>
+            <div id="form-container">
+                <form  id="expense-form">
+                    <div class="expense-input expense-form">
+                        <label for="expense-name">Expense Name</label>
+                        <input type="text" id="expense-name" placeholder="Label for given expense">
+                    </div>
+                    <div class="expense-input expense-form">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="expense-input expense-form">
+                        <label for="amount">Amount</label>
+                        <input type="number" step="0.01" id="amount" required>
+                    </div>
+                </form>
+            </div>
+            <div id="form-button-div">
+                <button type="button" form="expense-form" id="expense-submit">Enter</button>
+            </div>
+        </div>
+        <main>
+            <div id="button-div">
+                <button id="add-button" class="main-button">Add expense</button>
+                <button id="submit-button" class="main-button">Submit</button>
+            </div>
+            <div id="expense-display">
+                <table id="expense-table">
+                    <thead>
+                        
+                        <tr>
+                            <th colspan="5">Expenses</th>
+                            <!--<th>Date</th>
+                            <th>Amount</th>-->
+                        </tr>
+                    </thead>
+                    <tbody id="expense-table-body">
+
+                    </tbody>
+                    
+                </table>
+            </div>
+            <!--<div id="submit-div">
+                
+            </div> -->
+        </main>
+        <!--<footer>This is a footer</footer> -->
+        <script src="../scripts/table_scripts.js"></script>
+    </body>
+</html>

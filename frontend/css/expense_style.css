@@ -1,0 +1,324 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+header
+{
+    width: 100%;
+    height: 80px;
+    background-color: darkslategray;
+}
+
+#title
+{
+    text-align: center;
+    min-width: 200px;
+    font-size: 30px;
+    color: white;
+    position: relative;
+    padding-top: 25px;
+}
+*/
+
+body
+{
+    background-color: whitesmoke;
+}
+
+main
+{
+    position: relative;
+    top: 30px;
+    margin: 0 auto;
+    padding: 5px;
+    width: 75%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px gray;
+    background-color: white;
+}
+
+#button-div
+{
+    border: none;
+    border-radius: 3px;
+    margin: 5px 10px;
+    padding: 5px 10px;
+}
+
+#submit-button
+{
+    float: right;
+}
+
+.main-button
+{
+    width: 120px;
+    height: 40px;
+    background-color: rgb(42, 164, 42);
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.main-button:hover
+{
+    background-color: rgb(25, 109, 25);
+}
+
+#expense-form-div
+{
+    position: fixed;
+    top: 18%;
+    left: 18%;
+    width: 60%;
+    height: 400px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px 2px gray;
+    z-index: 10;
+    display: none;
+}
+
+#expense-form-div *
+{
+    box-sizing: border-box;
+}
+
+#expense-form-div form
+{
+    line-height: 1.5;
+    width: 100%;
+    height: 80%;
+}
+
+#expense-form-div h5
+{
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    font-size: 20px;
+    width: 90%;
+    margin: 5px auto;
+    text-align: center;
+}
+
+#form-container
+{
+    position: relative;
+    top: 10px;
+}
+
+#expense-form label
+{
+    top: 10px;
+    margin: 1px;
+    width: 100%;
+    display: block;
+}
+
+#expense-form .expense-input
+{
+    margin-top: 15px;
+}
+
+#expense-form input
+{
+    border: 1px solid gray;
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-indent: 10px;
+}
+
+/*
+#expense-form input::placeholder
+{
+    padding-left: 10px;
+}
+*/
+
+#expense-form
+{
+    display: block;
+    height: 300px;
+}
+
+
+#form-container
+{
+    height: 70%;
+}
+
+#expense-submit
+{
+    font-size: 18px;
+    display: block;
+    position: relative;
+    top: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: rgb(42, 164, 42);
+    border: none;
+    border-radius: 6px;
+}
+
+#expense-submit:hover
+{
+    background-color: rgb(103, 88, 47);
+}
+
+#form-exit-button
+{
+    color: gray;
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+
+#form-exit-button:hover
+{
+    color: black;
+}
+
+#expense-display
+{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+#expense-table, #expense-table-body
+{
+    width: 100%;
+    margin: auto;
+    border-spacing: 0px;
+}
+
+tr:hover
+{
+    background-color: rgb(244, 244, 244);
+}
+
+th
+{
+    background-color: lightgray;
+}
+
+th, td
+{
+    padding: 5px;
+    text-align: center;
+}
+
+tr
+{
+    height: 40px;
+}
+
+table, th, td
+{
+    border-collapse: collapse;
+    margin: 0;
+}
+
+table, th
+{
+    border: 1px solid gray;
+}
+
+td
+{
+    font-size: 18px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.table-button
+{
+    position: relative;
+    height: 30px;
+    width: 50px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(42, 164, 42);
+    color: black;
+}
+
+.table-button:hover
+{
+    background-color: rgb(25, 109, 25);
+}
+
+
+
+
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(32, 59, 59);
+    height: 5%;
+    box-sizing: border-box;
+    padding: 25px;
+    box-shadow: 1px 1px 5px 1px gray;
+}
+
+header * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#page-title {
+    color: white;
+    margin-right: auto;
+}
+
+#nav-list {
+    margin-right: 20px;
+}
+
+.navigate {
+    display: inline-block;
+    margin: 5px;
+}
+
+.navigate a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navigate a:hover {
+    color: rgb(202, 202, 202);
+}
+
+#log-button {
+    width: 100px;
+    height: 35px;
+    color: white;
+    background-color: rgb(93, 93, 239);
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+#log-button:hover {
+    background-color: rgb(120, 120, 198);
+    color: rgb(202, 202, 202);
+}
