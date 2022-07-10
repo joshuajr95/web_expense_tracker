@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/about_style.css') }}">
+{% endblock %}
+
+
+{% block main %}
+    <div>
+        <h3>About This Web App</h3>
+        <p>
+            The web app allows you to track your expenses. Just sign up and you can take charge of your finances.
+        </p>
+    </div>
+
+{% endblock %}
+

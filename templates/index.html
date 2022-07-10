@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+
+{% block head %}
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_button.css') }}">
+{% endblock %}
+
+{% block login_status %}
+    <button id="log-button">Log In</button>
+{% endblock %}
+
+{% block main %}
+    <div class="popup-form-div" id="login-form-div">
+        <h5>Enter Username and Password</h5>
+        <button id="login-exit-button" class="exit-button">X</button>
+        <div class="login-form-container">
+            <form class="popup-form" id="login-form" action="">
+                <div class="login-input">
+                    <input type="text" placeholder="Email or Username">
+                </div>
+                <div class="login-input">
+                    <input type="password" placeholder="Password">
+                </div>
+                <div class="login-input">
+                    <input type="submit" value="Log In">
+                </div>
+            </form>
+        </div>
+        <hr>
+        <button id="signup-button" class="form-button">Create New Account</button>
+        
+    </div>
+    <div class="popup-form-div" id="signup-form-div">
+        <h5>Sign Up</h5>
+        <button id="signup-exit-button" class="exit-button">X</button>
+        <div class="signup-form-container">
+            <form class="popup-form" id="signup-form" action="">
+                <div class="signup-input">
+                    <input type="text" placeholder="First Name">
+                </div>
+                <div class="signup-input">
+                    <input type="text" placeholder="Last Name">
+                </div>
+                <div class="signup-input">
+                    <input type="email" placeholder="Email Address">
+                </div>
+                <div class="signup-input">
+                    <input type="text" placeholder="Username (optional)">
+                </div>
+                <div class="signup-input">
+                    <input type="password" placeholder="Password">
+                </div>
+                <div class="signup-input">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <h3><a href="/expenses">Use table</a></h3>
+    <script type="module" src="{{ url_for('static', filename='scripts/index_scripts.js') }}"></script>
+{% endblock %}

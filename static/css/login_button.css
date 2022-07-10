@@ -1,0 +1,23 @@
+/* Author: Joshua Jacobs-Rebhun
+ * Date: July 9, 2022
+ * 
+ *
+ * This file simply styles the login button that is present on any webpage where
+ * there is no user logged in yet. Otherwise, this stylesheet is unused.
+ */
+
+
+#log-button {
+    width: 100px;
+    height: 35px;
+    color: white;
+    background-color: rgb(93, 93, 239);
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+#log-button:hover {
+    background-color: rgb(120, 120, 198);
+    color: rgb(202, 202, 202);
+}

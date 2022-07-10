@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>Welcome!</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}"> 
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/login_button.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/expense_table.css') }}">
+{% endblock %}
+
+{% block login_status %}
+<button id="log-button">Login</button>
+{% endblock %}
+
+{% block main %}
+    <div id="expense-form-div" class="popup-form-div expense-form-div">
+        <h5 >Enter your expense here</h5>
+        <button class="exit-button" id="form-exit-button">X</button>
+        <div class="form-container">
+            <form class="popup-form" id="expense-form">
+                <div class="expense-input">
+                    <label for="expense-name">Expense Name</label>
+                    <input type="text" id="expense-name" placeholder="Label for given expense">
+                </div>
+                <div class="expense-input">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="expense-input">
+                    <label for="amount">Amount</label>
+                    <input type="number" step="0.01" id="amount" required>
+                </div>
+            </form>
+        </div>
+        <div id="form-button-div">
+            <button class="form-button" type="button" form="expense-form" id="expense-submit">Enter</button>
+        </div>
+    </div>
+    <main>
+        <div class="button-div" id="button-div">
+            <button id="add-button" class="main-button">Add expense</button>
+            <button id="submit-button" class="main-button submit-button">Submit</button>
+        </div>
+        <div class="expense-display" id="expense-display">
+            <table class="expense-table" id="expense-table">
+                <thead>
+                    
+                    <tr>
+                        <th colspan="5">Expenses</th>
+                        <!--<th>Date</th>
+                        <th>Amount</th>-->
+                    </tr>
+                </thead>
+                <tbody class="expense-table-body" id="expense-table-body">
+
+                </tbody>
+                
+            </table>
+        </div>
+    </main>
+    <script type="module" src="{{ url_for('static', filename='scripts/table_scripts.js') }}"></script>
+{% endblock %}

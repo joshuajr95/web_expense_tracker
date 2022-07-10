@@ -67,7 +67,7 @@ main
 
 .main-button:hover
 {
-    background-color: rgb(25, 109, 25);
+    background-color: rgb(159, 132, 57);
 }
 
 #expense-form-div
@@ -136,6 +136,7 @@ main
     width: 100%;
     height: 40px;
     text-indent: 10px;
+    font-size: 14px;
 }
 
 /*
@@ -172,7 +173,7 @@ main
 
 #expense-submit:hover
 {
-    background-color: rgb(103, 88, 47);
+    background-color: rgb(159, 132, 57);
 }
 
 #form-exit-button

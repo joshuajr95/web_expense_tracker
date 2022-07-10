@@ -1,0 +1,126 @@
+/* Author: Joshua Jacobs-Rebhun
+ * Date: July 9, 2022
+ * 
+ * 
+ * This file implements the styles for the table.
+ */
+
+body *
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main
+{
+    position: relative;
+    top: 30px;
+    margin: 0 auto;
+    padding: 5px;
+    width: 75%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px gray;
+    background-color: white;
+}
+
+.button-div
+{
+    border: none;
+    border-radius: 3px;
+    margin: 5px 10px;
+    padding: 5px 10px;
+}
+
+.submit-button
+{
+    float: right;
+}
+
+.main-button
+{
+    width: 120px;
+    height: 40px;
+    background-color: rgb(42, 164, 42);
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.main-button:hover
+{
+    background-color: rgb(159, 132, 57);
+}
+
+.expense-display
+{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.expense-table, .expense-table-body
+{
+    width: 100%;
+    margin: auto;
+    border-spacing: 0px;
+}
+
+tr:hover
+{
+    background-color: rgb(244, 244, 244);
+}
+
+th
+{
+    background-color: lightgray;
+}
+
+th, td
+{
+    padding: 5px;
+    text-align: center;
+}
+
+tr
+{
+    height: 40px;
+}
+
+table, th, td
+{
+    border-collapse: collapse;
+    margin: 0;
+}
+
+table, th
+{
+    border: 1px solid gray;
+}
+
+td
+{
+    font-size: 18px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.table-button
+{
+    position: relative;
+    height: 30px;
+    width: 50px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(42, 164, 42);
+    color: black;
+}
+
+.table-button:hover
+{
+    background-color: rgb(25, 109, 25);
+}
+

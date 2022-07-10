@@ -1,0 +1,176 @@
+/* Author: Joshua Jacobs-Rebhun
+ * Date: July 9, 2022
+ *
+ *
+ * This is the base stylesheet for the whole website. Since the header will
+ * be part of every page in the website, all of the header styling will be
+ * in this file. The only exception is the login button since this will only
+ * be in the header when the user is not logged in and otherwise it will be
+ * a different element there. Thus that styling will be in a different file.
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 600px;
+    background-color: whitesmoke;
+}
+
+header {
+    position: sticky;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(32, 59, 59);
+    height: 8%;
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+.page-title {
+    color: white;
+    margin-right: auto;
+}
+
+.nav-list {
+    margin-right: 20px;
+}
+
+.navigate {
+    display: inline-block;
+    margin: 5px;
+}
+
+.navigate a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navigate a:hover {
+    color: rgb(202, 202, 202);
+}
+
+
+.popup-form-div {
+    position:fixed;
+    background-color: white;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px 2px gray;
+    z-index: 10;
+    display: none;
+    top: 18%;
+    left: 18%;
+    width: 60%;
+    height: 400px;
+    padding: 10px;
+}
+
+.popup-form
+{
+    display: block;
+    height: 300px;
+}
+
+.popup-form label {
+    margin: 1px;
+    width: 100%;
+    display: block;
+    top: 10px;
+}
+
+.popup-form .expense-input
+{
+    margin-top: 15px;
+}
+
+.popup-form input
+{
+    border: 1px solid gray;
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-indent: 10px;
+    font-size: 14px;
+}
+
+.form-button {
+    font-size: 18px;
+    display: block;
+    position: relative;
+    height: 40px;
+    background-color: rgb(42, 164, 42);
+    border: none;
+    border-radius: 6px;
+    top: 10px;
+    width: 100%;
+}
+
+.form-button:hover
+{
+    background-color: rgb(159, 132, 57);
+}
+
+.exit-button
+{
+    color: gray;
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+
+.exit-button:hover
+{
+    color: black;
+}
+
+.popup-form-div *
+{
+    box-sizing: border-box;
+}
+
+.popup-form-div form
+{
+    line-height: 1.5;
+    width: 100%;
+    height: 80%;
+}
+
+.popup-form-div h5
+{
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    font-size: 20px;
+    width: 90%;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.form-container
+{
+    position: relative;
+    top: 10px;
+    height: 70%;
+}
+
+.login-form-container
+{
+    position: relative;
+    top: 10px;
+    height: 50%;
+}
+
+.login-input
+{
+    margin-top: 15px;
+}
