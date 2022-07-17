@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/login_button.css') }}">
+{% endblock %}
+
+{% block login_status %}
+    {% if session.email %}
+        <button id="log-button" class="log-button"><a href="/logout">Log Out</a></button>
+    {% endif %}
+{% endblock %}
+
+
+{% block main %}
+    <main class="main-container">
+        <div class="side-div">
+            <ul class="side-bar" id="account-nav">
+                <li class="side-bar-elem"><a href="/{{ user }}/home">My Account</a></li>
+                <li class="side-bar-elem"><a href="/{{ user }}/expenses">My Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user }}/addexpenses">Add Expenses</a></li>
+            </ul>
+        </div>
+        <div class="main-section">
+            <h1 class="welcome-header">Welcome, {{ user }}</h1>
+            <div class="dashboard-div main-item account-info">
+                <h3 class="dashboard-title">Account Info</h3>
+                <p class="dashboard-name">Joshua</p>
+                <p class="dashboard-name">Jacobs-Rebhun</p>
+                <p class="dashboard-email">joshua.jacobs.rebhun94@gmail.com</p>
+                <button class="main-button dashboard-button">Modify</button>
+            </div>
+            <div class="dashboard-div main-item bank-accounts">
+                <h3 class="dashboard-title">Bank Accounts</h3>
+                <table class="display-table">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Accounts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <button class="main-button dashboard-button">Add Account</button>
+            </div>
+        </div>
+    </main>
+{% endblock %}

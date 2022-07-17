@@ -18,6 +18,47 @@ let editing = false;
 
 
 /*
+ * Callback function for when the 'add expense' button is clicked.
+ * Displays the expense form.
+ */
+function displayForm(formDiv)
+{
+    formDiv.style.display = "block";
+
+    let nodes = document.querySelectorAll('body *');
+
+    
+    nodes.forEach( element => {
+        if(!isDescendent(element, formDiv))
+        {
+            element.style.filter = "blur(1px)";
+            element.style.opacity = "0.7";
+        }
+        else
+        {
+            element.style.filter = "blur(0)";
+        }
+    });
+}
+
+
+/*
+ * Callback function for X button click. Hides the form.
+ */
+function hideForm(formElement, formDiv)
+{
+    document.querySelectorAll('body *').forEach( element => {
+        element.style.opacity = "1";
+        element.style.filter = "blur(0)";
+    });
+
+    formElement.reset();
+    editing = false;
+    formDiv.style.display = "none";
+}
+
+
+/*
  * This is the callback function for when the edit button is clicked
  * for a given row
  */
@@ -47,7 +88,8 @@ function editExpense(event)
     dateInput.value = expenseDate;
     amountInput.value = expenseAmount;
 
-    displayForm();
+    let formDiv = document.querySelector('#expense-form-div');
+    displayForm(formDiv);
 }
 
 
@@ -219,7 +261,10 @@ function addExpense(event)
         addNewRow(expense)
     }
 
-    hideForm();
+    let expenseForm = document.querySelector('#expense-form');
+    let expenseFormDiv = document.querySelector('#expense-form-div');
+
+    hideForm(expenseForm, expenseFormDiv);
 }
 
 
@@ -239,48 +284,6 @@ function isDescendent(domElement, ancestorElement)
     }
 
     return false;
-}
-
-
-
-/*
- * Callback function for when the 'add expense' button is clicked.
- * Displays the expense form.
- */
-function displayForm(formDiv)
-{
-    formDiv.style.display = "block";
-
-    let nodes = document.querySelectorAll('body *');
-
-    
-    nodes.forEach( element => {
-        if(!isDescendent(element, formDiv))
-        {
-            element.style.filter = "blur(1px)";
-            element.style.opacity = "0.7";
-        }
-        else
-        {
-            element.style.filter = "blur(0)";
-        }
-    });
-}
-
-
-/*
- * Callback function for X button click. Hides the form.
- */
-function hideForm(formElement, formDiv)
-{
-    document.querySelectorAll('body *').forEach( element => {
-        element.style.opacity = "1";
-        element.style.filter = "blur(0)";
-    });
-
-    formElement.reset();
-    editing = false;
-    formDiv.style.display = "none";
 }
 
 

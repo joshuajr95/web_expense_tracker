@@ -25,8 +25,8 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: rgb(32, 59, 59);
-    height: 8%;
+    background-color: rgb(43, 43, 43);
+    height: 10%;
     box-sizing: border-box;
     padding: 25px;
 }
@@ -36,23 +36,44 @@ header {
     margin-right: auto;
 }
 
+.page-title a {
+    color: white;
+    text-decoration: none;
+}
+
+.page-title a:hover {
+    color: rgb(198, 197, 238);
+}
+
 .nav-list {
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 .navigate {
     display: inline-block;
-    margin: 5px;
+    margin: 8px;
 }
 
 .navigate a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .navigate a:hover {
-    color: rgb(202, 202, 202);
+    color: rgb(198, 197, 238);
+}
+
+.main-item {
+    position: relative;
+    top: 30px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 75%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px gray;
+    background-color: white;
 }
 
 
@@ -174,3 +195,231 @@ header {
 {
     margin-top: 15px;
 }
+
+.index-main
+{
+    margin: auto;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.main-container {
+    display: flex;
+    align-items: stretch;
+    min-height: 500px;
+}
+
+/*
+.main-container :first-child {
+    width: 18%;
+}
+*/
+
+
+.side-div {
+    flex: 1;
+    min-width: 150px;
+    border: none;
+    border-right: 1px solid gray;
+    background-color: whitesmoke;
+    /*height: 500px;
+    /*box-shadow: 1px 1px 5px 2px rgb(155, 155, 155);*/
+}
+
+
+.side-bar {
+    display: block;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding-top: 10px;
+}
+
+
+.side-bar-elem {
+    display: block;
+    box-sizing: border-box;
+    margin-left: 10px;
+    padding: 10px;
+    height: 40px;
+    font-size: 18px;
+    /*border: 1px solid black;
+    border-collapse: collapse;*/
+    width: 100%;
+}
+
+.side-bar-elem a {
+    display: block;
+    text-decoration: none;
+    color: rgb(118, 118, 187);
+}
+
+.side-bar-elem a:hover {
+    color: rgb(53, 53, 53);
+}
+
+.main-section {
+    flex: 5;
+    padding: 10px 50px 60px 50px;
+}
+
+.welcome-header {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard-div {
+    margin: 20px auto;
+    padding: 20px;
+    width: 600px;
+}
+
+.bank-accounts {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.dashboard-title {
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.dashboard-name {
+    margin: 5px;
+    padding: 5px;
+}
+
+.dashboard-email {
+    margin: 5px;
+    padding: 5px;
+}
+
+.main-button
+{
+    width: 120px;
+    height: 40px;
+    background-color: rgb(42, 164, 42);
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.main-button:hover
+{
+    background-color: rgb(159, 132, 57);
+}
+
+.dashboard-button {
+    margin: 10px 0px;
+}
+
+.display-table, .display-table tbody {
+    width: 100%;
+    margin: 10px auto;
+    border-spacing: 0px;
+}
+
+.display-table th
+{
+    background-color: lightgray;
+}
+
+.display-table th, td
+{
+    padding: 5px;
+    text-align: center;
+}
+
+.display-table tr
+{
+    height: 40px;
+}
+
+.display-table tr:hover
+{
+    background-color: rgb(244, 244, 244);
+}
+
+.display-table, .display-table th, .display-table td
+{
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.display-table, .display-table th
+{
+    border: 1px solid gray;
+}
+
+.display-table td
+{
+    font-size: 18px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+
+.table-button
+{
+    position: relative;
+    height: 30px;
+    width: 50px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(42, 164, 42);
+    color: black;
+}
+
+.table-button:hover
+{
+    background-color: rgb(25, 109, 25);
+}
+
+.button-div
+{
+    border: none;
+    border-radius: 3px;
+    margin: 10px 0px;
+    padding: 5px 0px;
+}
+
+.submit-button
+{
+    float: right;
+}
+
+
+footer {
+    display: flex;
+    background-color: whitesmoke;
+    border-top: 1px solid gray;
+    height: 200px;
+}
+
+.footer-title {
+    color: rgb(0, 0, 0);
+}
+
+.footer-div {
+    margin: 30px;
+    padding: 20px;
+}
+
+.footer-div-header {
+    color: rgb(0, 0, 0);
+}
+
+.footer-list {
+    list-style: none;
+}
+
+.footer-list-item {
+    color: rgb(0, 0, 0);
+}
+

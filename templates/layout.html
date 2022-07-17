@@ -9,15 +9,36 @@
 </head>
 <body>
     <header>
-        <h2 class="page-title" id="page-title">Expensiv</h2>
+        <h1 class="page-title" id="page-title"><a href="/">Expensiv</a></h1>
         <nav>
             <ul class="nav-list" id="nav-list">
                 <li class="navigate"><a href="/about">About</a></li>
-                <li class="navigate"><a href="#">Contact</a></li>
+                <li class="navigate"><a href="/contact">Contact</a></li>
             </ul>
         </nav>
         {% block login_status %}{% endblock %}
     </header>
     {% block main %}{% endblock %}
+
+    <footer>
+        <div class="footer-div">
+            <h1 class="footer-title">Expensiv</h1>
+        </div>
+        <div class="footer-div">
+            <h3 class="footer-div-header">About</h3>
+            <ul class="footer-list">
+                <li class="footer-list-item">About Us</li>
+                <li class="footer-list-item">Our Services</li>
+                <li class="footer-list-item">Privacy and Security</li>
+            </ul>
+        </div>
+        <div class="footer-div">
+            <h3 class="footer-div-header">Help</h3>
+            <ul class="footer-list">
+                <li class="footer-list-item">FAQ</li>
+                <li class="footer-list-item">Contact</li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

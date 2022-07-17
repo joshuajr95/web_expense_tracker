@@ -8,13 +8,15 @@
 {% endblock %}
 
 {% block login_status %}
-<button id="log-button">Login</button>
+    {% if session.email %}
+        <button id="log-button" class="log-button"><a href="/logout">Log Out</a></button>
+    {% endif %}
 {% endblock %}
 
 {% block main %}
     <div id="expense-form-div" class="popup-form-div expense-form-div">
         <h5 >Enter your expense here</h5>
-        <button class="exit-button" id="form-exit-button">X</button>
+        <button class="exit-button" id="form-exit-button">&times;</button>
         <div class="form-container">
             <form class="popup-form" id="expense-form">
                 <div class="expense-input">
@@ -35,7 +37,7 @@
             <button class="form-button" type="button" form="expense-form" id="expense-submit">Enter</button>
         </div>
     </div>
-    <main>
+    <main class="main-item">
         <div class="button-div" id="button-div">
             <button id="add-button" class="main-button">Add expense</button>
             <button id="submit-button" class="main-button submit-button">Submit</button>

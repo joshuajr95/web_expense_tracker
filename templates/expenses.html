@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/login_button.css') }}">
+{% endblock %}
+
+{% block login_status %}
+    {% if session.email %}
+        <button id="log-button" class="log-button"><a href="/logout">Log Out</a></button>
+    {% endif %}
+{% endblock %}
+
+
+{% block main %}
+    <main class="main-container">
+        <div class="side-div">
+            <ul class="side-bar" id="account-nav">
+                <li class="side-bar-elem"><a href="/{{ user }}/home">My Account</a></li>
+                <li class="side-bar-elem"><a href="/{{ user }}/expenses">My Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user }}/addexpenses">Add Expenses</a></li>
+            </ul>
+        </div>
+        <div class="main-section">
+            <div class="main-item">
+                <table class="display-table" id="expense-table">
+                    <thead>
+                        
+                        <tr>
+                            <th colspan="5">Expenses</th>
+                            <!--<th>Date</th>
+                            <th>Amount</th>-->
+                        </tr>
+                    </thead>
+                    <tbody class="expense-table-body" id="expense-table-body">
+    
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </main>
+{% endblock %}

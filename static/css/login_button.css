@@ -7,17 +7,22 @@
  */
 
 
-#log-button {
+.log-button {
     width: 100px;
-    height: 35px;
+    height: 40px;
     color: white;
-    background-color: rgb(93, 93, 239);
-    border: none;
+    background-color: rgb(43, 43, 43);
+    border: 2px solid white;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 15px;
 }
 
-#log-button:hover {
-    background-color: rgb(120, 120, 198);
-    color: rgb(202, 202, 202);
+.log-button:hover {
+    background-color: rgb(93, 93, 239);
+    border: 2px solid rgb(93, 93, 239);;
+}
+
+.log-button a {
+    text-decoration: none;
+    color: white;
 }

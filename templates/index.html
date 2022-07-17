@@ -7,25 +7,28 @@
 {% endblock %}
 
 {% block login_status %}
-    <button id="log-button">Log In</button>
+    <button id="log-button" class="log-button">Log In</button>
 {% endblock %}
 
 {% block main %}
     <div class="popup-form-div" id="login-form-div">
         <h5>Enter Username and Password</h5>
-        <button id="login-exit-button" class="exit-button">X</button>
+        <button id="login-exit-button" class="exit-button">&times;</button>
         <div class="login-form-container">
-            <form class="popup-form" id="login-form" action="">
+            <form class="popup-form" id="login-form" action="/" method="post">
                 <div class="login-input">
-                    <input type="text" placeholder="Email or Username">
+                    <input name="email" type="text" placeholder="Email">
                 </div>
                 <div class="login-input">
-                    <input type="password" placeholder="Password">
+                    <input name="password" type="password" placeholder="Password">
                 </div>
                 <div class="login-input">
-                    <input type="submit" value="Log In">
+                    <input name="login-form" type="submit" value="Log In">
                 </div>
             </form>
+            {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
         </div>
         <hr>
         <button id="signup-button" class="form-button">Create New Account</button>
@@ -33,30 +36,33 @@
     </div>
     <div class="popup-form-div" id="signup-form-div">
         <h5>Sign Up</h5>
-        <button id="signup-exit-button" class="exit-button">X</button>
+        <button id="signup-exit-button" class="exit-button">&times;</button>
         <div class="signup-form-container">
-            <form class="popup-form" id="signup-form" action="">
+            <form class="popup-form" id="signup-form" action="/" method="post">
                 <div class="signup-input">
-                    <input type="text" placeholder="First Name">
+                    <input name="first-name" type="text" placeholder="First Name">
                 </div>
                 <div class="signup-input">
-                    <input type="text" placeholder="Last Name">
+                    <input name="last-name" type="text" placeholder="Last Name">
                 </div>
                 <div class="signup-input">
-                    <input type="email" placeholder="Email Address">
+                    <input name="email" type="email" placeholder="Email Address">
                 </div>
                 <div class="signup-input">
-                    <input type="text" placeholder="Username (optional)">
+                    <input name="password" type="password" placeholder="Password">
                 </div>
                 <div class="signup-input">
-                    <input type="password" placeholder="Password">
-                </div>
-                <div class="signup-input">
-                    <input type="submit">
+                    <input name="signup-form" type="submit" value="Create Account">
                 </div>
             </form>
+            {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
         </div>
     </div>
-    <h3><a href="/expenses">Use table</a></h3>
+    <main class="index-main" style="background-image: url('static/img/man_working.jpeg')">
+        
+    </main>
+    
     <script type="module" src="{{ url_for('static', filename='scripts/index_scripts.js') }}"></script>
 {% endblock %}
