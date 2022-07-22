@@ -9,6 +9,7 @@ need to have raw SQL in the main file.
 '''
 
 import pymysql.cursors
+from .classes import BankAccount
 
 
 # verifies the given login credentials
@@ -87,7 +88,7 @@ def sign_up(first_name, last_name, email, password):
 
 
 # get_user info from the database
-def get_user(email):
+def get_user_id(email):
     
     connection = pymysql.connect(host='localhost',
                             user='web_expense_tracker',
@@ -99,9 +100,85 @@ def get_user(email):
 
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT `first_name`, `id` FROM `Users` WHERE `email`=%s", email)
+            cursor.execute("SELECT `id` FROM `Users` WHERE `email`=%s", email)
             result = cursor.fetchone()
     
-    return result["first_name"] + str(result["id"])
+    return str(result["id"])
+
+
+
+def get_user_name(email):
+
+    connection = pymysql.connect(host='localhost',
+                            user='web_expense_tracker',
+                            password='password',
+                            database='web_expenses',
+                            cursorclass=pymysql.cursors.DictCursor)
+    
+    result = None
+
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT `first_name`, `last_name` FROM `Users` WHERE `email`=%s", email)
+            result = cursor.fetchone()
+    
+    return result["first_name"], result["last_name"]
+
+
+
+def get_bank_accounts(userID):
+
+    connection = pymysql.connect(host='localhost',
+                            user='web_expense_tracker',
+                            password='password',
+                            database='web_expenses',
+                            cursorclass=pymysql.cursors.DictCursor)
+    
+    results = None
+
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT `account_name`, `account_number`, `routing_number`, `id` FROM `bank_accounts` WHERE `user_id_number`=%s", userID)
+            results = cursor.fetchall()
+    
+    bank_accounts = []
+
+    for result in results:
+        bank_accounts.append(BankAccount(result["account_name"], result["account_number"], result["routing_number"], result["id"]))
     
 
+    return bank_accounts
+
+
+def delete_bank_account(user_id, account_id):
+
+    connection = pymysql.connect(host='localhost',
+                            user='web_expense_tracker',
+                            password='password',
+                            database='web_expenses',
+                            cursorclass=pymysql.cursors.DictCursor)
+    
+    with connection:
+        with connection.cursor() as cursor:
+            num_deleted = cursor.execute("DELETE FROM `bank_accounts` WHERE `id`=%s", account_id)
+    
+        connection.commit()
+
+    return (num_deleted == 1)
+
+
+def update_user_info(user_id, first_name, last_name, email):
+
+    connection = pymysql.connect(host='localhost',
+                            user='web_expense_tracker',
+                            password='password',
+                            database='web_expenses',
+                            cursorclass=pymysql.cursors.DictCursor)
+    
+    with connection:
+        with connection.cursor() as cursor:
+            rows_affected = cursor.execute("UPDATE `Users` SET `first_name`=%s, `last_name`=%s, `email`=%s", (first_name, last_name, email))
+
+        connection.commit()
+
+    return (rows_affected <= 3)

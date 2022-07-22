@@ -68,7 +68,7 @@ header {
     position: relative;
     top: 30px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     width: 75%;
     border: none;
     border-radius: 5px;
@@ -85,11 +85,25 @@ header {
     box-shadow: 1px 1px 5px 2px gray;
     z-index: 10;
     display: none;
-    top: 18%;
-    left: 18%;
-    width: 60%;
+    left: 0;
+    right: 0;
+    /*top: 18%;
+    left: 18%;*/
     height: 400px;
     padding: 10px;
+}
+
+.expense-form-div {
+    width: 500px;
+    margin: 5% auto;
+}
+
+.login-form-div {
+    width: 400px;
+}
+
+.signup-form-div {
+    width: 400px;
 }
 
 .popup-form
@@ -273,7 +287,6 @@ header {
 
 .dashboard-div {
     margin: 20px auto;
-    padding: 20px;
     width: 600px;
 }
 
@@ -303,6 +316,7 @@ header {
     width: 120px;
     height: 40px;
     background-color: rgb(42, 164, 42);
+    color: white;
     border: none;
     border-radius: 6px;
     font-size: 18px;
@@ -423,3 +437,28 @@ footer {
     color: rgb(0, 0, 0);
 }
 
+.sort-div {
+    /*float: right;*/
+    margin: 10px 0px;
+    padding: 5px 0px;
+}
+
+.sort-label {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.sort-by {
+    width: 140px;
+    height: 35px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(42, 164, 42);
+}
+
+.dashboard-form-div {
+    width: 500px;
+    margin: auto;
+}

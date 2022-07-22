@@ -12,37 +12,88 @@
 
 
 {% block main %}
+    <div id="account-info-form-div" class="popup-form-div dashboard-form-div">
+        <h5 >Modify Your Account Information</h5>
+        <button class="exit-button" id="form-exit-button" onclick="accountExitButtonClicked()">&times;</button>
+        <div class="form-container">
+            <form class="popup-form" id="account-form">
+                <div class="expense-input">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name">
+                </div>
+                <div class="expense-input">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name">
+                </div>
+                <div class="expense-input">
+                    <label for="email">Email</label>
+                    <input type="email" id="Email">
+                </div>
+            </form>
+        </div>
+        <div id="form-button-div">
+            <button class="form-button" type="button" id="account-submit" onclick="accountSubmitClicked()">Enter</button>
+        </div>
+    </div>
+    <div id="bank-account-form-div" class="popup-form-div dashboard-form-div">
+        <h5>Manage Bank Accounts</h5>
+        <button class="exit-button" id="form-exit-button" onclick="bankAccountExitButtonClicked()">&times;</button>
+        <div class="form-container">
+            <form class="popup-form" id="bank-account-form">
+                <div class="expense-input">
+                    <label for="account-name">Account Name</label>
+                    <input type="text" id="account-name" placeholder="Account Name">
+                </div>
+                <div class="expense-input">
+                    <label for="account-number">Account Number</label>
+                    <input type="text" id="account-number" placeholder="Account Number">
+                </div>
+                <div class="expense-input">
+                    <label for="routing-number">Routing Number</label>
+                    <input type="text" id="routing-number" placeholder="Routing Number">
+                </div>
+            </form>
+        </div>
+        <div id="form-button-div">
+            <button class="form-button" type="button" id="bank-account-submit" onclick="bankAccountSubmitClicked()">Enter</button>
+        </div>
+    </div>
     <main class="main-container">
         <div class="side-div">
             <ul class="side-bar" id="account-nav">
-                <li class="side-bar-elem"><a href="/{{ user }}/home">My Account</a></li>
-                <li class="side-bar-elem"><a href="/{{ user }}/expenses">My Expenses</a></li>
-                <li class="side-bar-elem"><a href="/{{ user }}/addexpenses">Add Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/home">My Account</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/expenses">My Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/addexpenses">Add Expenses</a></li>
             </ul>
         </div>
         <div class="main-section">
-            <h1 class="welcome-header">Welcome, {{ user }}</h1>
+            <h1 id="welcome-header" class="welcome-header">Welcome, {{ first_name }}</h1>
             <div class="dashboard-div main-item account-info">
                 <h3 class="dashboard-title">Account Info</h3>
-                <p class="dashboard-name">Joshua</p>
-                <p class="dashboard-name">Jacobs-Rebhun</p>
-                <p class="dashboard-email">joshua.jacobs.rebhun94@gmail.com</p>
-                <button class="main-button dashboard-button">Modify</button>
+                <p class="dashboard-name" id="first-name-display">{{ first_name }}</p>
+                <p class="dashboard-name" id="last-name-display">{{ last_name }}</p>
+                <p class="dashboard-email" id="email-display">{{ email }}</p>
+                <button id="modify-account-info" class="main-button dashboard-button" onclick="modifyClicked()">Modify</button>
             </div>
             <div class="dashboard-div main-item bank-accounts">
                 <h3 class="dashboard-title">Bank Accounts</h3>
                 <table class="display-table">
                     <thead>
                         <tr>
-                            <th colspan="3">Accounts</th>
+                            <th colspan="5">Accounts</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="bank-account-table-body">
 
                     </tbody>
                 </table>
-                <button class="main-button dashboard-button">Add Account</button>
+                <button id="add-account" class="main-button dashboard-button" onclick="addAccountClicked()">Add Account</button>
             </div>
         </div>
     </main>
+    <script type="text/javascript">
+        const email = "{{ email }}";
+        const user_id = "{{ user_id }}";
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/homepage_scripts.js') }}"></script>
 {% endblock %}

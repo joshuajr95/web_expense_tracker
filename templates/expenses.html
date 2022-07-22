@@ -16,13 +16,27 @@
     <main class="main-container">
         <div class="side-div">
             <ul class="side-bar" id="account-nav">
-                <li class="side-bar-elem"><a href="/{{ user }}/home">My Account</a></li>
-                <li class="side-bar-elem"><a href="/{{ user }}/expenses">My Expenses</a></li>
-                <li class="side-bar-elem"><a href="/{{ user }}/addexpenses">Add Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/home">My Account</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/expenses">My Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/addexpenses">Add Expenses</a></li>
             </ul>
         </div>
         <div class="main-section">
-            <div class="main-item">
+            <div class="main-item expense-div">
+                <h3 class="dashboard-title">My Expenses</h3>
+                <!--
+                <div class="search-div">
+                    <button
+                </div> -->
+                <div class="sort-div">
+                    <label class="sort-label">Sort By:</label>
+                    <select class="sort-by">
+                        <option value="date-newest">Date (newest first)</option>
+                        <option value="date-oldest">Date (oldest first)</option>
+                        <option value="amount-least">Amount (least first)</option>
+                        <option value="amount-most">Amount (most first)</option>
+                    </select>
+                </div>
                 <table class="display-table" id="expense-table">
                     <thead>
                         
