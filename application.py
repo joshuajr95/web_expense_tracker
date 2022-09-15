@@ -69,8 +69,8 @@ def home(user_id):
     return render_template("homepage.html", user_id=user_id, first_name=first_name, last_name=last_name, email=session.get("email"))
 
 
-@app.route("/<user_id>/expenses")
-def expenses(user_id):
+@app.route("/<user_id>/myexpenses")
+def myexpenses(user_id):
     if not session["email"]:
         return redirect(url_for("index"))
     
@@ -83,6 +83,21 @@ def addexpenses(user_id):
         return redirect(url_for("index"))
     
     return render_template("addexpenses.html", user_id=user_id)
+
+
+@app.route("/<user_id>/expenses", methods=['GET', 'POST', 'PUT', 'DELETE'])
+def expenses(user_id):
+    if not session["email"]:
+        return redirect(url_for("index"))
+    
+    if request.method == 'GET':
+        pass
+    elif request.method == 'PUT':
+        pass
+    elif request.method == 'POST':
+        pass
+    elif request.method == 'DELETE':
+        pass
 
 
 @app.route("/<user_id>/bankaccounts", methods=['GET', 'POST', 'PUT', 'DELETE'])
@@ -107,17 +122,19 @@ def bankaccounts(user_id):
             return Response(status=204)
     
     elif request.method == 'PUT':
-        pass
+        account_name = request.headers.get("account-name")
+        account_number = request.headers.get("account-number")
+        routing_number = request.headers.get("routing-number")
+        account_id = request.headers.get("account_id")
+
+        bank_account = modify_bank_account(account_id, user_id, account_name, account_number, routing_number)
+        print(bank_account)
+        return Response(json.dumps(bank_account.__dict__), mimetype='application/json')
 
     elif request.method == 'GET':
         bank_accounts = get_bank_accounts(user_id)
 
-        #return Response(json.dumps([account.__dict__ for account in bank_accounts]), mimetype='application/json')
-        accounts = []
-        accounts.append(BankAccount("checking", 113241234, 12341234, 3))
-        accounts.append(BankAccount("savings", 12344321166, 56875876, 4))
-
-        return Response(json.dumps([account.__dict__ for account in accounts]), mimetype='application/json')
+        return Response(json.dumps([account.__dict__ for account in bank_accounts]), mimetype='application/json')
 
 
 @app.route("/<user_id>/accountinfo", methods=['GET', 'PUT'])

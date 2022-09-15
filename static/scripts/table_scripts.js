@@ -16,6 +16,11 @@ let nextExpenseNumber = 0;
 let rowToEdit = 0;
 let editing = false;
 
+let expenses = {
+    nextExpenseNumber: 0,
+    expenses: {}
+};
+
 
 /*
  * Callback function for when the 'add expense' button is clicked.
@@ -304,7 +309,88 @@ function exitButtonClicked(event)
 }
 
 
+function loadDatabase(databaseName)
+{
+    let db = null;
+    let objectStore = null;
 
-document.querySelector('#expense-submit').addEventListener('click', addExpense);
-document.querySelector('#add-button').addEventListener('click', addButtonClicked);
-document.querySelector('#form-exit-button').addEventListener('click', exitButtonClicked);
+    const connection = indexedDB.open(databaseName);
+
+    connection.onsuccess = (event) => {
+        db = connection.result;
+
+        if(!db.objectStoreNames.contains("temp_expenses")) {
+            objectStore = db.createObjectStore("temp_expenses");
+        }
+
+        let transaction = db.transaction('temp_expenses', 'readwrite');
+
+        transaction.oncomplete = (event) => {
+
+        };
+
+        transaction.onerror = (event) => {
+
+        };
+
+        let store = transaction.objectStore('temp_expenses');
+        let req = store.openCursor();
+
+        req.onsuccess = (event) => {
+            if(cursor) {
+                expenses.expenses[cursor.key] = cursor.value;
+                cursor.continue();
+            }
+            else {
+
+            }
+        };
+    };
+
+    connection.onupgradeneeded = (event) => {
+
+    };
+
+    connection.onerror = (event) => {
+
+    };
+
+
+}
+
+function commitToDatabase(database)
+{
+    let db = null;
+    let objectStore = null;
+
+    let connection = indexedDB.open(database);
+
+    connection.onsuccess = (event) => {
+        db = connection.result;
+
+        if(db.objectStoreNames.contains('temp_expenses')) {
+            
+        }
+    }
+}
+
+
+function flushToServer(database)
+{
+
+}
+
+
+function submitClicked(event)
+{
+    commitToDatabase("expenses");
+    flushToServer("expenses");
+}
+
+
+window.onload = loadDatabase("expenses");
+window.onunload = commitToDatabase("expenses");
+
+//document.querySelector('#expense-submit').addEventListener('click', addExpense);
+//document.querySelector('#add-button').addEventListener('click', addButtonClicked);
+//document.querySelector('#form-exit-button').addEventListener('click', exitButtonClicked);

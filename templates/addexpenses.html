@@ -14,7 +14,7 @@
 {% block main %}
     <div id="expense-form-div" class="popup-form-div expense-form-div">
         <h5 >Enter your expense here</h5>
-        <button class="exit-button" id="form-exit-button">&times;</button>
+        <button class="exit-button" id="form-exit-button" onclick="exitButtonClicked()">&times;</button>
         <div class="form-container">
             <form class="popup-form" id="expense-form">
                 <div class="expense-input">
@@ -32,14 +32,14 @@
             </form>
         </div>
         <div id="form-button-div">
-            <button class="form-button" type="button" form="expense-form" id="expense-submit">Enter</button>
+            <button class="form-button" type="button" form="expense-form" id="expense-submit" onclick="addExpense()">Enter</button>
         </div>
     </div>
     <main class="main-container">
         <div class="side-div">
             <ul class="side-bar" id="account-nav">
                 <li class="side-bar-elem"><a href="/{{ user_id }}/home">My Account</a></li>
-                <li class="side-bar-elem"><a href="/{{ user_id }}/expenses">My Expenses</a></li>
+                <li class="side-bar-elem"><a href="/{{ user_id }}/myexpenses">My Expenses</a></li>
                 <li class="side-bar-elem"><a href="/{{ user_id }}/addexpenses">Add Expenses</a></li>
             </ul>
         </div>
@@ -47,8 +47,8 @@
             <div class="main-item expense-div">
                 <h3 class="dashboard-title">Add Expenses</h3>
                 <div class="button-div" id="button-div">
-                    <button id="add-button" class="main-button">Add expense</button>
-                    <button id="submit-button" class="main-button submit-button">Submit</button>
+                    <button id="add-button" class="main-button" onclick="addButtonClicked()">Add expense</button>
+                    <button id="submit-button" class="main-button submit-button" onclick="submitClicked()">Submit</button>
                 </div>
                 <div class="expense-display" id="expense-display">
                     <table class="display-table" id="expense-table">

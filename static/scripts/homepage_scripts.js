@@ -205,14 +205,18 @@ function updateBankAccountInfo()
 
     let xhr = new XMLHttpRequest();
     xhr.open("PUT", endpoint, true);
+    xhr.responseType = "json";
 
     xhr.setRequestHeader("account-name", accountName);
     xhr.setRequestHeader("account-number", accountNumber);
     xhr.setRequestHeader("routing-number", routingNumber);
+    xhr.setRequestHeader("account_id", account_id);
 
     xhr.onload = function() {
         if(this.status == 200) {
-            let rowID = "row-" + account_id.toString();
+            console.log(this);
+            let rowID = "row-" + this.response.id.toString();
+            console.log(rowID);
             document.getElementById(rowID).children[0].innerHTML = accountName;
             document.getElementById(rowID).children[1].innerHTML = accountNumber;
             document.getElementById(rowID).children[2].innerHTML = routingNumber;
@@ -242,7 +246,7 @@ function addBankAccount()
 
     xhr.onload = function() {
         if(this.status == 200) {
-            addAccountToTable(response.bankAccount);
+            addAccountToTable(this.response);
         }
     }
 

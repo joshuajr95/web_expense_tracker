@@ -91,6 +91,7 @@ header {
     left: 18%;*/
     height: 400px;
     padding: 10px;
+    transition: 0.5s;
 }
 
 .expense-form-div {

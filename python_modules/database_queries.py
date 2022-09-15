@@ -125,6 +125,25 @@ def get_user_name(email):
     return result["first_name"], result["last_name"]
 
 
+def update_user_info(user_id, first_name, last_name, email):
+
+    connection = pymysql.connect(host='localhost',
+                            user='web_expense_tracker',
+                            password='password',
+                            database='web_expenses',
+                            cursorclass=pymysql.cursors.DictCursor)
+    
+    rows_affected = 0
+
+    with connection:
+        with connection.cursor() as cursor:
+            rows_affected = cursor.execute("UPDATE `Users` SET `first_name`=%s, `last_name`=%s, `email`=%s", (first_name, last_name, email))
+
+        connection.commit()
+
+    return (rows_affected == 1)
+
+
 
 def get_bank_accounts(userID):
 
@@ -158,27 +177,53 @@ def delete_bank_account(user_id, account_id):
                             database='web_expenses',
                             cursorclass=pymysql.cursors.DictCursor)
     
+    rows_affected = 0
+
     with connection:
         with connection.cursor() as cursor:
-            num_deleted = cursor.execute("DELETE FROM `bank_accounts` WHERE `id`=%s", account_id)
+            rows_affected = cursor.execute("DELETE FROM `bank_accounts` WHERE `id`=%s", account_id)
     
         connection.commit()
 
-    return (num_deleted == 1)
+    return (rows_affected == 1)
 
 
-def update_user_info(user_id, first_name, last_name, email):
+def add_bank_account(user_id, account_name, account_number, routing_number):
 
     connection = pymysql.connect(host='localhost',
                             user='web_expense_tracker',
                             password='password',
                             database='web_expenses',
                             cursorclass=pymysql.cursors.DictCursor)
-    
+
+    account_id = None
+
     with connection:
         with connection.cursor() as cursor:
-            rows_affected = cursor.execute("UPDATE `Users` SET `first_name`=%s, `last_name`=%s, `email`=%s", (first_name, last_name, email))
+            cursor.execute("INSERT INTO `bank_accounts` (`account_name`, `account_number`, `routing_number`, `user_id_number`) VALUES (%s, %s, %s, %s)", (account_name, account_number, routing_number, user_id))
+            cursor.execute("SELECT `id` FROM `bank_accounts` WHERE `account_number` = %s AND `routing_number` = %s", (account_number, routing_number))
+            account_id = cursor.fetchone()
 
         connection.commit()
 
-    return (rows_affected <= 3)
+    return BankAccount(account_name, account_number, routing_number, account_id)
+
+
+def modify_bank_account(account_id, user_id, account_name, account_number, routing_number):
+
+    connection = pymysql.connect(host='localhost',
+                            user='web_expense_tracker',
+                            password='password',
+                            database='web_expenses',
+                            cursorclass=pymysql.cursors.DictCursor)
+
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE `bank_accounts` SET `account_name`=%s, `account_number`=%s, `routing_number`=%s, `user_id_number`=%s WHERE `id`=%s", (account_name, account_number, routing_number, user_id, account_id))
+        
+        connection.commit()
+    
+    return BankAccount(account_name, account_number, routing_number, account_id)
+    
+
+
