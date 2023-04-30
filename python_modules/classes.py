@@ -14,3 +14,6 @@ class BankAccount:
         self.account_number = account_number
         self.routing_number = routing_number
         self.id = account_id
+    
+    def __str__(self):
+        return "account name: " + name + "\taccount number: " + str(account_number) + "\trouting number: " + str(routing_number) + "\taccount id: " + str(account_id)

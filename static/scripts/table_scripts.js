@@ -9,16 +9,28 @@
 
 
 // global variables for keeping track of number of table rows
-let numExpenses = 0;
-let nextExpenseNumber = 0;
+//let numExpenses = 0;
+//let nextExpenseNumber = 0;
 
 
-let rowToEdit = 0;
-let editing = false;
+//let rowToEdit = 0;
+//let editing = false;
 
+
+/*
+ * The expenses data structure stores the expense objects and other
+ * useful data for allowing dynamic generating, editing, and deletion
+ * of expenses
+ */
 let expenses = {
+    rowToEdit: 0,
+    editing: false,
+    numExpenses: 0,
     nextExpenseNumber: 0,
-    expenses: {}
+    expenses: {},
+    rowsEdited: {},
+    rowsRemoved: [],
+    rowsAdded: []
 };
 
 
@@ -76,8 +88,8 @@ function editExpense(event)
     let row = document.querySelector(rowID);
 
     // for keeping track of editing state
-    editing = true;
-    rowToEdit = parseInt(rowNumber);
+    expenses.editing = true;
+    expenses.rowToEdit = parseInt(rowNumber);
 
     // get the values from the row
     let expenseName = row.children[0].innerHTML;
@@ -107,6 +119,8 @@ function removeExpense(event)
     let rowNumber = buttonID.toString().split('-')[3];
     let rowIDSelector = "#row-" + rowNumber;
     let row = document.querySelector(rowIDSelector);
+
+    /*
     let expenseName = row.children[0];
     let expenseDate = row.children[1];
     let expenseAmount = row.children[2];
@@ -116,11 +130,21 @@ function removeExpense(event)
         date: expenseDate,
         amount: expenseAmount
     };
+    */
 
 
     row.remove();
-    numExpenses--;
+    delete expenses.expenses[rowNumber];
 
+    if(rowNumber in expenses.rowsAdded) {
+        delete expenses.rowsAdded[rowNumber];
+    }
+    else if(rowNumber in expenses.rowsEdited) {
+        delete expenses.rowsEdited[rowNumber];
+    }
+
+    expenses.rowsRemoved.push(rowNumber);
+    expenses.numExpenses--;
 }
 
 
@@ -147,7 +171,7 @@ function addNewRow(expense)
 
     // create new row for table
     const table_row = document.createElement("tr");
-    table_row.id = "row-" + nextExpenseNumber.toString();
+    table_row.id = "row-" + expenses.nextExpenseNumber.toString();
 
     // create new columns for new table element
     const table_data_name = document.createElement("td");
@@ -190,8 +214,8 @@ function addNewRow(expense)
     data_edit.addEventListener('click', editExpense);
     data_remove.addEventListener('click', removeExpense);
 
-    let data_edit_id = "data-edit-row-" + nextExpenseNumber.toString();
-    let data_remove_id = "data-remove-row-" + nextExpenseNumber.toString();
+    let data_edit_id = "data-edit-row-" + expenses.nextExpenseNumber.toString();
+    let data_remove_id = "data-remove-row-" + expenses.nextExpenseNumber.toString();
     data_edit.id = data_edit_id;
     data_remove.id = data_remove_id;
 
@@ -209,15 +233,11 @@ function addNewRow(expense)
     // add row to table
     let expense_table = document.querySelector('#expense-table-body');
     expense_table.appendChild(table_row);
-
-    numExpenses++;
-    nextExpenseNumber++;
 }
 
 
 function modifyExistingRow(expense)
 {
-
     let currentRowID = "#row-" + rowToEdit.toString();
     let currentRow = document.querySelector(currentRowID);
 
@@ -255,15 +275,36 @@ function addExpense(event)
         amount: expense_amount
     };
 
+
+    /*
+     * Check if expense has just been added and if so
+     * remove it from the added dict. Should do this for
+     * remove also.
+     */
     if(editing)
     {
+        expenses.expenses[expenses.rowToEdit] = expense;
+
+        if(expenses.rowToEdit in expenses.rowsAdded) {
+            delete expenses.rowsAdded[expenses.rowToEdit];
+        }
+
+        if(!(expenses.rowToEdit in expenses.rowsEdited)) {
+            expenses.rowsEdited[expenses.rowToEdit] = true;
+        }
+
         modifyExistingRow(expense);
-        editing = false;
+        expenses.editing = false;
+        expenses.rowToEdit = 0;
     }
 
     else
     {
+        expenses.expenses[expenses.nextExpenseNumber] = expense;
+        expenses.added.push(expenses.nextExpenseNumber);
         addNewRow(expense)
+        expenses.numExpenses++;
+        expenses.nextExpenseNumber++;
     }
 
     let expenseForm = document.querySelector('#expense-form');
@@ -321,30 +362,36 @@ function loadDatabase(databaseName)
 
         if(!db.objectStoreNames.contains("temp_expenses")) {
             objectStore = db.createObjectStore("temp_expenses");
+            expenses.editing = false;
+            expenses.nextExpenseNumber = 0;
+            expenses.numExpenses = 0;
+            return;
         }
 
-        let transaction = db.transaction('temp_expenses', 'readwrite');
+        else {
+            objectStore = db.transaction('temp_expenses', 'readwrite').objectStore('temp_expenses');
+        }
 
-        transaction.oncomplete = (event) => {
+        let records = objectStore.getAll();
 
-        };
+        records.onsuccess = (event) => {
+            expenses.editing = false;
+            expenses.nextExpenseNumber = 0;
+            expenses.numExpenses = records.result.length;
 
-        transaction.onerror = (event) => {
+            for(let i = 0; i < records.result.length; i++) {
+                expenses.expenses[records.result[i].key] = (records.result[i].value);
+                addNewRow(records.result[i].value);
 
-        };
-
-        let store = transaction.objectStore('temp_expenses');
-        let req = store.openCursor();
-
-        req.onsuccess = (event) => {
-            if(cursor) {
-                expenses.expenses[cursor.key] = cursor.value;
-                cursor.continue();
+                if(records.result[i].key > expenses.nextExpenseNumber)
+                {
+                    expenses.nextExpenseNumber = records.result[i].key;
+                }
             }
-            else {
+            
+        }
 
-            }
-        };
+
     };
 
     connection.onupgradeneeded = (event) => {
@@ -355,7 +402,9 @@ function loadDatabase(databaseName)
 
     };
 
+    db.close();
 
+    //return results;
 }
 
 function commitToDatabase(database)
@@ -368,15 +417,80 @@ function commitToDatabase(database)
     connection.onsuccess = (event) => {
         db = connection.result;
 
-        if(db.objectStoreNames.contains('temp_expenses')) {
+        if(!db.objectStoreNames.contains('temp_expenses')) {
+            objectStore = db.createObjectStore('temp_expenses');
+        }
+
+        else {
+            objectStore = db.transaction('temp_expenses', 'readwrite').objectStore('temp_expenses');
+        }
+
+        for(let i = 0; i < expenses.rowsEdited.length; i++) {
+            let req = objectStore.openCursor(expenses.rowsEdited[i]);
+
+            req.onsuccess = function(e) {
+                var cursor = e.target.result; 
+                if (cursor) { // key already exist
+                    cursor.update(expenses.expenses[expenses.rowsEdited[i]]);
+                } else { // key not exist
+                    objectStore.add(expenses.expenses[expenses.rowsEdited[i]], expenses.rowsEdited[i]);
+                }
+            };
             
         }
+
+        for(let i = 0; i < expenses.rowsAdded.length; i++) {
+            objectStore.add(expenses.expenses[expenses.rowsAdded[i]], expenses.rowsAdded[i]);
+        }
+
+        for(let i = 0; i < expenses.rowsRemoved.length; i++) {
+            let req = objectStore.openCursor(expenses.rowsRemoved[i]);
+
+            req.onsuccess = function(e) {
+                var cursor = e.target.result; 
+                if (cursor) { // key already exist
+                    cursor.delete(expenses.rowsEdited[i]);
+                }
+            };
+        }
+
+
     }
+
+    db.close();
+
+    expenses.rowsEdited = []
+    expenses.rowsAdded = []
+    expenses.rowsRemoved = []
+
+    expenses.expenses = {}
 }
 
 
 function flushToServer(database)
 {
+    let expenses = [];
+
+    //open indexeddb
+    // open objectstore
+    // for key in objectstore
+        // add value to expenses
+    //close database
+
+    let xhr = new XMLHttpRequest();
+
+    let endpoint = "/" + 
+
+    xhr.open("POST", );
+
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(expenses));
+    // XMLHttpRequest
+    // fill it out
+    // add json data for expenses to it
+    // send it
+    // wait for response
+    // redirect to myexpenses
 
 }
 

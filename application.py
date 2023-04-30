@@ -156,6 +156,20 @@ def accountinfo(user_id):
         else:
             return Response(status=204)
 
+
+# route for adding expenses to the database
+@app.route("/<userid>/commitexpenses")
+def commitexpenses():
+    if not session["email"]:
+        return redirect(url_for("index"))
+    
+    if request.method == "POST":
+        expenses = json.loads(request.data)
+        add_expenses(expenses.expenses)
+
+        return redirect(url_for())
+
+
 '''
 @app.route("/expenses")
 def expenses():

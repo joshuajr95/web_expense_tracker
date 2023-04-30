@@ -224,6 +224,11 @@ def modify_bank_account(account_id, user_id, account_name, account_number, routi
         connection.commit()
     
     return BankAccount(account_name, account_number, routing_number, account_id)
-    
+
+
+
+def add_expenses(expenses):
+    pass
+
 
 
